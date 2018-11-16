@@ -1,4 +1,11 @@
 class Game extends React.Component {
+  PlaySound(url) {
+    let audio = new Audio(url);
+    audio.play();
+  }
+
+
+
   render() {
     return (
       <div className="game">
@@ -9,10 +16,14 @@ class Game extends React.Component {
           Pick flowers and drag them to your plot to make music.
         </div>
         <div className="plants">
-        	<img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/5SidedYellow.png?raw=true'/>
-          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/6SidedOrange.png?raw=true'/>
-          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/6SidedPurple.png?raw=true'/>
-          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/FancyPink.png?raw=true'/>
+        	<img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/5SidedYellow.png?raw=true'
+            onClick={() => this.PlaySound("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3")}/>
+          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/6SidedOrange.png?raw=true'
+            onClick={() => this.PlaySound("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3")}/>
+          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/6SidedPurple.png?raw=true'
+            onClick={() => this.PlaySound("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3")}/>
+          <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/FancyPink.png?raw=true'
+            onClick={() => this.PlaySound("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3")}/>
           <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/GreenDaisy.png?raw=true'/>
           <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/GreenLoop.png?raw=true'/>
           <img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/IndianPink.png?raw=true'/>
