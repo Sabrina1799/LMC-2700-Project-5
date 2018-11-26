@@ -10,59 +10,59 @@ class Game extends React.Component {
 
   PlaySound1() {
     // 19) Bright Acoustic Piano: Piano
-    this.midiSounds.playChordNow(19, [80], 2);
+    this.midiSounds.playChordNow(19, [80], 1);
   }
   PlaySound2() {
     // 270) Acoustic Guitar (steel): Guitar
-    this.midiSounds.playChordNow(270, [80], 2);
+    this.midiSounds.playChordNow(270, [80], 1);
   }
   PlaySound3() {
     // 468) Cello: Strings
-    this.midiSounds.playChordNow(468, [65], 2);
+    this.midiSounds.playChordNow(468, [65], 1);
   }
   PlaySound4() {
     // 776) Flute: Pipe
-    this.midiSounds.playChordNow(776, [90], 2);
+    this.midiSounds.playChordNow(776, [90], 1);
   }
   PlaySound5() {
     // 762) Piccolo: Pipe
-    this.midiSounds.playChordNow(762, [75], 2);
+    this.midiSounds.playChordNow(762, [75], 1);
   }
   PlaySound6() {
     // 455) Violin: Strings
-    this.midiSounds.playChordNow(455, [80], 2);
+    this.midiSounds.playChordNow(455, [80], 1);
   }
   PlaySound7() {
     // 603) Synth Choir: Ensemble
-    this.midiSounds.playChordNow(603, [65], 2);
+    this.midiSounds.playChordNow(603, [65], 1);
   }
   PlaySound8() {
     // 999) Pad 7 (halo): Synth Pad
-    this.midiSounds.playChordNow(999, [80], 2);
+    this.midiSounds.playChordNow(999, [80], 1);
   }
   PlaySound9() {
     // 1045) FX3 (crystal) Synth Effects
-    this.midiSounds.playChordNow(1045, [55], 2);
+    this.midiSounds.playChordNow(1045, [55], 1);
   }
   PlaySound10() {
     // 1130) Banjo: Ethnic
-    this.midiSounds.playChordNow(1130, [70], 2);
+    this.midiSounds.playChordNow(1130, [70], 1);
   }
   PlaySound11() {
     // 1155) Koto: Ethnic
-    this.midiSounds.playChordNow(1155, [70], 2);
+    this.midiSounds.playChordNow(1155, [70], 1);
   }
   PlaySound12() {
     // 2) Acoustic Grand Piano: Piano
-    this.midiSounds.playChordNow(2, [70], 2);
+    this.midiSounds.playChordNow(2, [70], 1);
   }
   PlaySound13() {
     // 8) Acoustic Grand Piano: Piano
-    this.midiSounds.playChordNow(8, [60], 2);
+    this.midiSounds.playChordNow(8, [60], 1);
   }
   PlaySound14() {
     // 10) Acoustic Grand Piano
-    this.midiSounds.playChordNow(10, [60], 2);
+    this.midiSounds.playChordNow(10, [60], 1);
   }
 
   /** Make an array to where each image is placed and play it. */
