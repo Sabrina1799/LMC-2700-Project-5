@@ -156,7 +156,6 @@ class Game extends React.Component {
           </table>
           <h6>Gardener Two</h6>
           <table className="plot" id="plot2">
-            <caption>Second Player</caption>
             <tr>
               	<td><img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Plot.png?raw=true'/></td>
 	            <td><img src='https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Plot.png?raw=true'/></td>
