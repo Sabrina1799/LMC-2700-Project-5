@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="game.css">
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <title></title>
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="game">
+    <div class="title">Music Garden Title</div>
+    <div class="help">
+      Pick flowers and drag them to your plot to make music.
+    </div>
+    <div class="plants">
+      <img class="flower" src="Flowers/5SidedYellow.png" />
+      <img class="flower" src="Flowers/6SidedOrange.png" />
+      <img class="flower" src="Flowers/6SidedPurple.png" />
+      <img class="flower" src="Flowers/FancyPink.png" />
+      <img class="flower" src="Flowers/GreenDaisy.png" />
+      <img class="flower" src="Flowers/GreenLoop.png" />
+      <img class="flower" src="Flowers/IndianPink.png" />
+      <img class="flower" src="Flowers/IndigoRose.png" />
+      <img class="flower" src="Flowers/OrangeSpiral.png" />
+      <img class="flower" src="Flowers/PurpleSpiky.png" />
+      <img class="flower" src="Flowers/RedSpiky.png" />
+      <img class="flower" src="Flowers/SimpleGreen.png" />
+      <img class="flower" src="Flowers/SimplePink.png" />
+      <img class="flower" src="Flowers/YellowDaisy.png" />
+    </div>
+    <div class="plots">
+      <div class="plotContainer" id="plot1">
+        <caption>First Player</caption>
+        <ol>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+        </ol>
+        <ol>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+        </ol>
+      </div>
+      <div class="plotContainer" id="plot2">
+        <caption>Second Player</caption>
+        <ul>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+        </ul>
+        <ul>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+          <li class="plot"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <button>Play</button>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    $(function() {
+      $('.flower').draggable({
+        opacity: 0.5,
+        helper: 'clone',
+        revert: 'invalid'
+      });
+
+      $('.plot').droppable({
+        drop: function(ev, ui) {
+          $(ev.target).empty().append(
+            $(ui.helper)
+              .clone(true)
+              .addClass('planted')
+              .attr('style', '')
+          );
+        }
+      });
+    });
+  </script>
+</body>
+</html>
