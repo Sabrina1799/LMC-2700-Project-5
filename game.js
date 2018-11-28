@@ -130,6 +130,7 @@ class Game extends React.Component {
           <img
             src="https://github.com/Sabrina1799/LMC-2700-Project-5/blob/Kat/Flowers/YellowDaisy.png?raw=true"
             onClick={() => this.PlaySound14()}
+          
           />
         </div>
         <div className="plots">
