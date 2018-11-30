@@ -1,16 +1,29 @@
 {
-  "name": "lmc2700-proj5",
+  "name": "lmc-2700-project-5",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "dependencies": {
+    "midi-sounds-react": "^1.2.54",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel": "^6.23.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabrina1799/lmc-2700-project-5.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "socket.io": "^2.1.1"
-  }
+  "bugs": {
+    "url": "https://github.com/sabrina1799/lmc-2700-project-5/issues"
+  },
+  "homepage": "https://github.com/sabrina1799/lmc-2700-project-5#readme"
 }
