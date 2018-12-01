@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import MIDISounds from 'midi-sounds-react';
+
+import Plot from './plot';
 
 import fiveSidedYellow from './images/5SidedYellow.png';
 import sixSidedOrange from "./images/6SidedOrange.png";
@@ -15,77 +18,124 @@ import simpleGreen from "./images/SimpleGreen.png";
 import simplePink from "./images/SimplePink.png";
 import yellowDaisy from './images/YellowDaisy.png';
 
-class App extends React.Component {
+let
+  // musicBox = 109,
+  marimba = 127,
+  // xylophone = 140,
+  steelAcoustic = 256,
+  instruments = [marimba, steelAcoustic, 19, 270, 468, 776, 762, 455, 603, 999, 1045, 1130, 1155, 2, 8];
+
+
+
+let mappings = {
+  fiveSidedYellow: function(delay) {
+    this.midiSounds.playChordNow(19, [80], 2);
+  },
+  sixSidedOrange: function(delay) {
+    this.midiSounds.playChordNow(270, [80], 2);
+  },
+  sixSidedPurple: function(delay) {
+    this.midiSounds.playChordNow(468, [65], 2);
+  },
+  fancyPink: function(delay) {
+    this.midiSounds.playChordNow(776, [90], 2);
+  },
+  greenLoop: function(delay) {
+    this.midiSounds.playChordNow(762, [75], 2);
+  },
+  indianPink: function(delay) {
+    this.midiSounds.playChordNow(455, [80], 2);
+  },
+  indigoRose: function(delay) {
+    this.midiSounds.playChordNow(603, [65], 2);
+  },
+  orangeSpiral: function(delay) {
+    this.midiSounds.playChordNow(999, [80], 2);
+  },
+  purpleSpiky: function(delay) {
+    this.midiSounds.playChordNow(1045, [55], 2);
+  },
+  redSpiky: function(delay) {
+    this.midiSounds.playChordNow(1130, [70], 2);
+  },
+  simpleGreen: function(delay) {
+    this.midiSounds.playChordNow(1155, [70], 2);
+  },
+  simplePink: function(delay) {
+    this.midiSounds.playChordNow(2, [70], 2);
+  },
+  yellowDaisy: function(delay) {
+    this.midiSounds.playChordNow(8, [60], 2);
+  }
+};
+
+class App extends Component {
+  playOne(id) {
+    mappings[id].call(this);
+  }
+
+  playSequence() {
+    let
+      self = this,
+      delay = 0;
+
+    $('.planted').each(function(index, elem) {
+      let classes = $(elem).attr('class').split(' ');
+
+      classes.forEach(function(c) {
+        if (typeof mappings[c] == 'function') {
+          (function(d) {
+            setTimeout(function() {
+              mappings[c].call(self, d);
+            }, d);
+          })(delay);
+
+          delay += 1000;
+        }
+      });
+    });
+  }
+
   render() {
   	return (
   	  <div className="game">
-	    <div className="title">Music Garden Title</div>
-	    <div className="help">
-	      Pick flowers and drag them to your plot to make music.
-	    </div>
-	    <div className="plants">
-	      <img className="flower" src={fiveSidedYellow} />
-	      <img className="flower" src={sixSidedOrange} />
-	      <img className="flower" src={sixSidedPurple} />
-	      <img className="flower" src={fancyPink} />
-	      <img className="flower" src={greenLoop} />
-	      <img className="flower" src={indianPink} />
-	      <img className="flower" src={indigoRose} />
-	      <img className="flower" src={orangeSpiral} />
-	      <img className="flower" src={purpleSpiky} />
-	      <img className="flower" src={redSpiky} />
-	      <img className="flower" src={simpleGreen} />
-	      <img className="flower" src={simplePink} />
-	      <img className="flower" src={yellowDaisy} />
-	    </div>
-	    <div className="plots">
-	      <div className="plotContainer" id="plot1">
-	        <h1>First Player</h1>
-	        <ol>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	        </ol>
-	        <ol>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	        </ol>
-	      </div>
-	      <div className="plotContainer" id="plot2">
-	        <h1>Second Player</h1>
-	        <ul>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	        </ul>
-	        <ul>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	          <li className="plot"></li>
-	        </ul>
-	      </div>
-	    </div>
-	    <div className="footer">
-	      <button>Play</button>
-	    </div>
-	  </div>
+  	    <div className="title">Music Garden Title</div>
+  	    <div className="help">
+  	      Pick flowers and drag them to your plot to make music.
+  	    </div>
+  	    <div className="plants">
+  	      <img className="flower fiveSidedYellow" id="fiveSidedYellow" src={fiveSidedYellow} />
+  	      <img className="flower sixSidedOrange" id='sixSidedOrange' src={sixSidedOrange} />
+  	      <img className="flower sixSidedPurple" id='sixSidedPurple' src={sixSidedPurple} />
+  	      <img className="flower fancyPink" id='fancyPink' src={fancyPink} />
+  	      <img className="flower greenLoop" id="greenLoop" src={greenLoop} />
+  	      <img className="flower indianPink" id="indianPink" src={indianPink} />
+  	      <img className="flower indigoRose" id="indigoRose" src={indigoRose} />
+  	      <img className="flower orangeSpiral" id="orangeSpiral" src={orangeSpiral} />
+  	      <img className="flower purpleSpiky" id="purpleSpiky" src={purpleSpiky} />
+  	      <img className="flower redSpiky" id="redSpiky" src={redSpiky} />
+  	      <img className="flower simpleGreen" id="simpleGreen" src={simpleGreen} />
+  	      <img className="flower simplePink" id="simplePink" src={simplePink} />
+  	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
+  	    </div>
+  	    <ol className="plots">
+          <li>
+            <Plot />
+          </li>
+          <li>
+            <Plot />
+          </li>
+  	    </ol>
+  	    <div className="footer">
+  	      <button onClick={this.playSequence.bind(this)}>Play</button>
+  	    </div>
+
+        <MIDISounds
+          ref={ref => (this.midiSounds = ref)}
+          appElementName="mount-node"
+          instruments={instruments}
+        />
+  	  </div>
   	)
   }
 
@@ -93,19 +143,14 @@ class App extends React.Component {
   	$(function() {
       $('.flower').draggable({
         opacity: 0.5,
-        helper: 'clone',
-        revert: 'invalid'
+        helper: 'clone'
       });
+    });
 
-      $('.plot').droppable({
-        drop: function(ev, ui) {
-          $(ev.target).empty().append(
-            $(ui.helper)
-              .clone(true)
-              .addClass('planted')
-              .attr('style', '')
-          );
-        }
+    let that = this;
+    $('.flower').each(function(index, elem) {
+      $(elem).on('click', function() {
+        mappings[elem.id].call(that);
       });
     });
   }
