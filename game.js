@@ -70,7 +70,7 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        <div className="title">Music Garden Title</div>
+        <h1 className="title">Music Garden Title</h1>
         <div className="help">
           Pick flowers and drag them to your plot to make music.
         </div>
@@ -188,4 +188,5 @@ class Game extends React.Component {
     );
   }
 }
+
 ReactDOM.render(<Game />, mountNode);
