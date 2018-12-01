@@ -70,3 +70,6 @@ button:focus {
 .plots {
   list-style-type: none;
 }
+.lit-up {
+  background-color: #87ceeb;
+}
