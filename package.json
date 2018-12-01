@@ -6,7 +6,8 @@
   "dependencies": {
     "midi-sounds-react": "^1.2.54",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-popupbox": "^2.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
