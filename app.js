@@ -29,79 +29,43 @@ let
 
 let mappings = {
   fiveSidedYellow: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 19, [80], 2);
-    else
-      this.midiSounds.playChordNow(19, [80], 2);
+    this.midiSounds.playChordNow(19, [80], 2);
   },
   sixSidedOrange: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 270, [80], 2);
-    else
-      this.midiSounds.playChordNow(270, [80], 2);
+    this.midiSounds.playChordNow(270, [80], 2);
   },
   sixSidedPurple: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 270, [80], 2);
-    else
-      this.midiSounds.playChordNow(468, [65], 2);
+    this.midiSounds.playChordNow(468, [65], 2);
   },
   fancyPink: function(delay) {
     this.midiSounds.playChordNow(776, [90], 2);
   },
   greenLoop: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 762, [75], 2);
-    else
-      this.midiSounds.playChordNow(762, [75], 2);
+    this.midiSounds.playChordNow(762, [75], 2);
   },
   indianPink: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 455, [80], 2);
-    else
-      this.midiSounds.playChordNow(455, [80], 2);
+    this.midiSounds.playChordNow(455, [80], 2);
   },
   indigoRose: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 603, [65], 2);
-    else
-      this.midiSounds.playChordNow(603, [65], 2);
+    this.midiSounds.playChordNow(603, [65], 2);
   },
   orangeSpiral: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 999, [80], 2);
-    else
-      this.midiSounds.playChordNow(999, [80], 2);
+    this.midiSounds.playChordNow(999, [80], 2);
   },
   purpleSpiky: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 1045, [55], 2);
-    else
-      this.midiSounds.playChordNow(1045, [55], 2);
+    this.midiSounds.playChordNow(1045, [55], 2);
   },
   redSpiky: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 1130, [70], 2);
-    else
-      this.midiSounds.playChordNow(1130, [70], 2);
+    this.midiSounds.playChordNow(1130, [70], 2);
   },
   simpleGreen: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 1155, [70], 2);
-    else
-      this.midiSounds.playChordNow(1155, [70], 2);
+    this.midiSounds.playChordNow(1155, [70], 2);
   },
   simplePink: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 2, [70], 2);
-    else
-      this.midiSounds.playChordNow(2, [70], 2);
+    this.midiSounds.playChordNow(2, [70], 2);
   },
   yellowDaisy: function(delay) {
-    if (delay)
-      this.midiSounds.playChordAt(delay, 8, [60], 2);
-    else
-      this.midiSounds.playChordNow(8, [60], 2);
+    this.midiSounds.playChordNow(8, [60], 2);
   }
 };
 
@@ -111,25 +75,24 @@ class App extends Component {
   }
 
   playSequence() {
-    let self = this;
+    let
+      self = this,
+      delay = 0;
 
     $('.planted').each(function(index, elem) {
-      let delay = 0;
-
       let classes = $(elem).attr('class').split(' ');
 
       classes.forEach(function(c) {
         if (typeof mappings[c] == 'function') {
           (function(d) {
-            console.log('using delay: ', d);
             setTimeout(function() {
-              mappings[c].call(self);
+              mappings[c].call(self, d);
             }, d);
-          }(delay));
+          })(delay);
 
           delay += 1000;
         }
-      })
+      });
     });
   }
 

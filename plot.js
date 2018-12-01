@@ -4,8 +4,6 @@ class Plot extends Component {
   componentDidMount() {
     $('.plot').droppable({
       drop: function(ev, ui) {
-        console.log('ui.helper[0]: ', ui.helper[0])
-
         $(ev.target).empty().append(
           $(ui.helper)
             .clone(true)
