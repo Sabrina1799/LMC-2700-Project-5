@@ -192,13 +192,13 @@ class App extends Component {
       });
     });
 
-    // let that = this;
-    // $('.flower').each(function(index, elem) {
-    //   $(elem).on('click', function() {
-    //     mappings[elem.id].call(that);
-    //     attr('onClick', 'removeFlower(this.src)')
-    //   });
-    // });
+    let that = this;
+    $('.flower').each(function(index, elem) {
+      $(elem).on('click', function() {
+        mappings[elem.id].call(that);
+        attr('onClick', 'removeFlower(this.src)')
+      });
+    });
   }
 
   removeFlower(image) {
