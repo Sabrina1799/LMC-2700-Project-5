@@ -19,11 +19,15 @@ import simplePink from "./images/SimplePink.png";
 import yellowDaisy from './images/YellowDaisy.png';
 
 let
+  acousticGrandPiano = 4,
+  steelAcoustic = 256,
+  celesta = 94,
+  glockenspiel = 102,
   musicBox = 109,
   marimba = 127,
   xylophone = 140,
-  steelAcoustic = 256,
-  instruments = [musicBox, marimba, xylophone, steelAcoustic];
+
+  instruments = [acousticGrandPiano, celesta, glockenspiel, musicBox, marimba, xylophone, steelAcoustic];
 
 let mappings = {
   fiveSidedYellow: function(instr) {
@@ -68,6 +72,13 @@ let mappings = {
 };
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      plotCount: 2
+    }
+  }
+
   playOne(id) {
     mappings[id].call(this);
   }
@@ -141,16 +152,14 @@ class App extends Component {
   	      <img className="flower simplePink" id="simplePink" src={simplePink} />
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
-  	    <ol className="plots">
-          <li>
+  	    <ol id="plots" className="plots">
+          {Array(this.state.plotCount).fill(1).map((el, i) =>
             <Plot />
-          </li>
-          <li>
-            <Plot />
-          </li>
+          )}
   	    </ol>
   	    <div className="footer">
   	      <button onClick={this.playSequence.bind(this)}>Play</button>
+          <button onClick={this.addPlot.bind(this)}>Add plot</button>
   	    </div>
 
         <MIDISounds
@@ -160,6 +169,14 @@ class App extends Component {
         />
   	  </div>
   	)
+  }
+
+  addPlot() {
+    if (this.state.plotCount <= 7) {
+      this.setState({
+        plotCount: this.state.plotCount + 1
+      });
+    }
   }
 
   componentDidMount() {

@@ -8,7 +8,6 @@ class Plot extends Component {
           $(ui.helper)
             .clone(true)
             .addClass('planted')
-            // .attr('id', ui.helper[0].id)
             .attr('style', '')
         );
       }
@@ -18,8 +17,14 @@ class Plot extends Component {
   render() {
     return (
       <div className="plotContainer">
-        <h1>Player One</h1>
+        <h1>Plot</h1>
         <ol>
+          <li className="plot"></li>
+          <li className="plot"></li>
+          <li className="plot"></li>
+          <li className="plot"></li>
+          <li className="plot"></li>
+          <li className="plot"></li>
           <li className="plot"></li>
           <li className="plot"></li>
           <li className="plot"></li>

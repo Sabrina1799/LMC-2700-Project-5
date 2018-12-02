@@ -44,9 +44,10 @@
   display: inline-block;
 }*/
 .footer {
-  display: flex;
+  /* display: flex; */
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+
 }
 button:focus {
   outline: none;
