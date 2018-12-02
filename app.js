@@ -19,57 +19,66 @@ import simplePink from "./images/SimplePink.png";
 import yellowDaisy from './images/YellowDaisy.png';
 
 let
-  // musicBox = 109,
-  marimba = 127,
-  // xylophone = 140,
+  acousticGrandPiano = 4,
   steelAcoustic = 256,
-  instruments = [marimba, steelAcoustic, 19, 270, 468, 776, 762, 455, 603, 999, 1045, 1130, 1155, 2, 8];
+  celesta = 94,
+  glockenspiel = 102,
+  musicBox = 109,
+  marimba = 127,
+  xylophone = 140,
 
-
+  instruments = [acousticGrandPiano, celesta, glockenspiel, musicBox, marimba, xylophone, steelAcoustic];
 
 let mappings = {
-  fiveSidedYellow: function(delay) {
-    this.midiSounds.playChordNow(19, [80], 2);
+  fiveSidedYellow: function(instr) {
+    this.midiSounds.playChordNow(instr, [80], 1);
   },
-  sixSidedOrange: function(delay) {
-    this.midiSounds.playChordNow(270, [80], 2);
+  sixSidedOrange: function(instr) {
+    this.midiSounds.playChordNow(instr, [80], 1);
   },
-  sixSidedPurple: function(delay) {
-    this.midiSounds.playChordNow(468, [65], 2);
+  sixSidedPurple: function(instr) {
+    this.midiSounds.playChordNow(instr, [65], 1);
   },
-  fancyPink: function(delay) {
-    this.midiSounds.playChordNow(776, [90], 2);
+  fancyPink: function(instr) {
+    this.midiSounds.playChordNow(instr, [90], 1);
   },
-  greenLoop: function(delay) {
-    this.midiSounds.playChordNow(762, [75], 2);
+  greenLoop: function(instr) {
+    this.midiSounds.playChordNow(instr, [75], 1);
   },
-  indianPink: function(delay) {
-    this.midiSounds.playChordNow(455, [80], 2);
+  indianPink: function(instr) {
+    this.midiSounds.playChordNow(instr, [80], 1);
   },
-  indigoRose: function(delay) {
-    this.midiSounds.playChordNow(603, [65], 2);
+  indigoRose: function(instr) {
+    this.midiSounds.playChordNow(instr, [65], 1);
   },
-  orangeSpiral: function(delay) {
-    this.midiSounds.playChordNow(999, [80], 2);
+  orangeSpiral: function(instr) {
+    this.midiSounds.playChordNow(instr, [80], 1);
   },
-  purpleSpiky: function(delay) {
-    this.midiSounds.playChordNow(1045, [55], 2);
+  purpleSpiky: function(instr) {
+    this.midiSounds.playChordNow(instr, [55], 1);
   },
-  redSpiky: function(delay) {
-    this.midiSounds.playChordNow(1130, [70], 2);
+  redSpiky: function(instr) {
+    this.midiSounds.playChordNow(instr, [70], 1);
   },
-  simpleGreen: function(delay) {
-    this.midiSounds.playChordNow(1155, [70], 2);
+  simpleGreen: function(instr) {
+    this.midiSounds.playChordNow(instr, [70], 1);
   },
-  simplePink: function(delay) {
-    this.midiSounds.playChordNow(2, [70], 2);
+  simplePink: function(instr) {
+    this.midiSounds.playChordNow(instr, [70], 1);
   },
-  yellowDaisy: function(delay) {
-    this.midiSounds.playChordNow(8, [60], 2);
+  yellowDaisy: function(instr) {
+    this.midiSounds.playChordNow(instr, [60], 1);
   }
 };
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      plotCount: 2
+    }
+  }
+
   playOne(id) {
     mappings[id].call(this);
   }
@@ -77,22 +86,47 @@ class App extends Component {
   playSequence() {
     let
       self = this,
-      delay = 0;
+      instrIndex = 0;
 
-    $('.planted').each(function(index, elem) {
-      let classes = $(elem).attr('class').split(' ');
+    $('.plotContainer').each(function(i, el) {
+      (function(instr) {
+        let delay = 0;
 
-      classes.forEach(function(c) {
-        if (typeof mappings[c] == 'function') {
-          (function(d) {
-            setTimeout(function() {
-              mappings[c].call(self, d);
-            }, d);
-          })(delay);
+        $(el).find('.plot').each(function(index, elem) {
+          let
+            flower = $(elem).find('.planted'),
+            parent = $(elem);
 
-          delay += 1000;
-        }
-      });
+          if (flower.length > 0) {
+            let classes = flower.attr('class').split(' ');
+
+            classes.forEach(function(c) {
+              if (typeof mappings[c] == 'function') {
+                (function(d) {
+                  setTimeout(function() {
+                    parent.addClass('lit-up');
+                    mappings[c].call(self, instr);
+                    setTimeout(function() {
+                      parent.removeClass('lit-up');
+                    }, 500);
+                  }, d);
+                })(delay);
+              }
+            });
+          } else {
+            (function(d) {
+              setTimeout(function() {
+                parent.addClass('lit-up');
+                setTimeout(function() {
+                  parent.removeClass('lit-up');
+                }, 500);
+              }, d);
+            })(delay);
+          }
+
+          delay += 500;
+        });
+      })(instruments[instrIndex++]);
     });
   }
 
@@ -118,16 +152,14 @@ class App extends Component {
   	      <img className="flower simplePink" id="simplePink" src={simplePink} />
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
-  	    <ol className="plots">
-          <li>
+  	    <ol id="plots" className="plots">
+          {Array(this.state.plotCount).fill(1).map((el, i) =>
             <Plot />
-          </li>
-          <li>
-            <Plot />
-          </li>
+          )}
   	    </ol>
   	    <div className="footer">
   	      <button onClick={this.playSequence.bind(this)}>Play</button>
+          <button onClick={this.addPlot.bind(this)}>Add plot</button>
   	    </div>
 
         <MIDISounds
@@ -139,6 +171,14 @@ class App extends Component {
   	)
   }
 
+  addPlot() {
+    if (this.state.plotCount <= 7) {
+      this.setState({
+        plotCount: this.state.plotCount + 1
+      });
+    }
+  }
+
   componentDidMount() {
   	$(function() {
       $('.flower').draggable({
@@ -147,12 +187,12 @@ class App extends Component {
       });
     });
 
-    let that = this;
-    $('.flower').each(function(index, elem) {
-      $(elem).on('click', function() {
-        mappings[elem.id].call(that);
-      });
-    });
+    // let that = this;
+    // $('.flower').each(function(index, elem) {
+      // $(elem).on('click', function() {
+      //   mappings[elem.id].call(that);
+      // });
+    // });
   }
 }
 
