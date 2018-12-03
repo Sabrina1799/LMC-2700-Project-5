@@ -86,6 +86,14 @@ class App extends Component {
     mappings[id].call(this);
   }
 
+  clearAll() {
+    let player = this.state.activePlayer;
+
+    $('#rowNum' + player).find('.plot').each(function(i, el) {
+      $(el).empty();
+    });
+  }
+
   playSequence() {
     let
       self = this,
@@ -159,10 +167,14 @@ class App extends Component {
         <div className="controls">
           <button onClick={this.playSequence.bind(this)}>Play</button>
           <button onClick={this.addPlot.bind(this)}>Add plot</button>
-          <button onClick={this.addPlayer.bind(this)}>Add player</button>
-          {(this.state.players.length > 1) &&
-            (<button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer() + 1}</button>)
-          }
+          <button onClick={this.clearAll.bind(this)}>Clear all</button>
+
+          <div class="multiplayer-controls">
+            <button onClick={this.addPlayer.bind(this)}>Add player</button>
+            {(this.state.players.length > 1) &&
+              (<button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer() + 1}</button>)
+            }
+          </div>
         </div>
   	    <ol id="plots" className="plots">
           {Array(this.state.playerCount).fill(0).map( (v, i) => {
@@ -172,7 +184,7 @@ class App extends Component {
 
             return (
               <div id={"rowNum" + i} className="player-space">
-                <h1>Player {(i + 1)}</h1>
+                <h1 className={this.state.activePlayer == i ? 'title-active' : 'title-inactive'}>Player {i + 1}</h1>
                 {Array(players[i].plotCount).fill(1).map(() =>
                   <Plot  />
                 )}
@@ -245,13 +257,6 @@ class App extends Component {
         helper: 'clone'
       });
     });
-
-    // let that = this;
-    // $('.flower').each(function(index, elem) {
-      // $(elem).on('click', function() {
-      //   mappings[elem.id].call(that);
-      // });
-    // });
   }
 }
 
