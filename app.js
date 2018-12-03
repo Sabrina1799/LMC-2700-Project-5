@@ -103,7 +103,7 @@ class App extends Component {
     let self = this;
     let intervalId = setInterval(function() {
       self.playSequence(true);
-    }, 2000);
+    }, 6500);
 
     this.setState({
       continuous: {
