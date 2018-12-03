@@ -142,7 +142,7 @@ class App extends Component {
   	    <div className="help">
   	      <h3> <p> SINGLE PLAYER MODE: </p> </h3>
   	      <h4> <p> Pick flowers and drag them to your plot to make music. </p>
-  	      <p> Add more plots to have more variety in your music (max 6 plots). </p> </h4>
+  	      <p> Add more plots to have more variety in your music (max 7 plots). </p> </h4>
   	    </div>
   	    <div className="plants">
   	      <img className="flower fiveSidedYellow" id="fiveSidedYellow" src={fiveSidedYellow} />
