@@ -94,13 +94,27 @@ class App extends Component {
     });
   }
 
-  playSequence() {
+  playAllInSequence() {
+    this.playSequence(true);
+  }
+
+  playSequence(all) {
     let
       self = this,
       instrIndex = 0,
-      player = this.state.activePlayer;
+      player = this.state.activePlayer,
+      sel;
 
-    $('#rowNum' + player).find('.plotContainer').each(function(i, el) {
+    console.log('all value: ', all == true ? "true" : 'false');
+
+    if (all)
+      sel = $('.plotContainer');
+    else
+      sel = $('#rowNum' + player).find('.plotContainer')
+
+    console.log('sel: ', sel)
+
+    sel.each(function(i, el) {
       (function(instr) {
         let delay = 0;
 
@@ -165,9 +179,10 @@ class App extends Component {
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
         <div className="controls">
-          <button onClick={this.playSequence.bind(this)}>Play</button>
+          <button onClick={this.playSequence.bind(this, false)}>Play</button>
           <button onClick={this.addPlot.bind(this)}>Add plot</button>
           <button onClick={this.clearAll.bind(this)}>Clear all</button>
+          <button onClick={this.playAllInSequence.bind(this)}>Play all</button>
 
           <div class="multiplayer-controls">
             <button onClick={this.addPlayer.bind(this)}>Add player</button>
