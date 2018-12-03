@@ -46,8 +46,9 @@ body {
   margin: 1rem 5%;
   display: inline-block;
 }*/
-.footer {
+.controls {
   width: 100%;
+  padding: 10px;
 }
 button:focus {
   outline: none;

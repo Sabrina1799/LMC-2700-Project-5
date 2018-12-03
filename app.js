@@ -156,11 +156,13 @@ class App extends Component {
   	      <img className="flower simplePink" id="simplePink" src={simplePink} />
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
-        <div className="footer">
+        <div className="controls">
           <button onClick={this.playSequence.bind(this)}>Play</button>
           <button onClick={this.addPlot.bind(this)}>Add plot</button>
           <button onClick={this.addPlayer.bind(this)}>Add player</button>
-          <button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer()}</button>
+          {(this.state.players.length > 1) &&
+            (<button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer() + 1}</button>)
+          }
         </div>
   	    <ol id="plots" className="plots">
           {Array(this.state.playerCount).fill(0).map( (v, i) => {
@@ -171,7 +173,7 @@ class App extends Component {
             return (
               <div id={"rowNum" + i} className="player-space">
                 <h1>Player {(i + 1)}</h1>
-                {Array(players[active].plotCount).fill(1).map(() =>
+                {Array(players[i].plotCount).fill(1).map(() =>
                   <Plot  />
                 )}
               </div>
@@ -194,7 +196,7 @@ class App extends Component {
       player = this.state.players[active],
       plotCount = player.plotCount;
 
-    if (plotCount <= 7) {
+    if (plotCount <= 5) {
       var
         players = this.state.players,
         newPlayersArr = players.slice();
@@ -224,13 +226,16 @@ class App extends Component {
 
   nextPlayer() {
     var current = this.state.activePlayer;
-    return current == 1 ? 2 : 1;
+
+    return current == 0 ? 1 : 0;
   }
 
   switchPlayer() {
-    this.setState({
-      activePlayer: this.nextPlayer()
-    });
+    if (this.state.players.length > 1) {
+      this.setState({
+        activePlayer: this.nextPlayer()
+      });
+    }
   }
 
   componentDidMount() {
