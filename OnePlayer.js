@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.css";
+import "./game.css";
 export default class OnePlayer extends Component {
   state = {};
   render() {

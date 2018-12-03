@@ -7,7 +7,6 @@ import Popup from "reactjs-popup";
 import NavBarNPM from "reactjs-navigation";
 import { BrowserRouter, Route, withRouter } from "react-router-dom";
 
-import "./styles.css";
 import Home from "./Home.js";
 import OnePlayer from "./OnePlayer.js";
 import TwoPlayer from "./TwoPlayer.js";
