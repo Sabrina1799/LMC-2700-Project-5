@@ -30,43 +30,43 @@ let
 
 let mappings = {
   fiveSidedYellow: function(instr) {
-    this.midiSounds.playChordNow(instr, [80], 1);
+    this.midiSounds.playChordNow(instr, [10], 1);
   },
   sixSidedOrange: function(instr) {
-    this.midiSounds.playChordNow(instr, [80], 1);
+    this.midiSounds.playChordNow(instr, [20], 1);
   },
   sixSidedPurple: function(instr) {
-    this.midiSounds.playChordNow(instr, [65], 1);
+    this.midiSounds.playChordNow(instr, [30], 1);
   },
   fancyPink: function(instr) {
-    this.midiSounds.playChordNow(instr, [90], 1);
+    this.midiSounds.playChordNow(instr, [40], 1);
   },
   greenLoop: function(instr) {
-    this.midiSounds.playChordNow(instr, [75], 1);
+    this.midiSounds.playChordNow(instr, [50], 1);
   },
   indianPink: function(instr) {
-    this.midiSounds.playChordNow(instr, [80], 1);
+    this.midiSounds.playChordNow(instr, [60], 1);
   },
   indigoRose: function(instr) {
-    this.midiSounds.playChordNow(instr, [65], 1);
+    this.midiSounds.playChordNow(instr, [70], 1);
   },
   orangeSpiral: function(instr) {
     this.midiSounds.playChordNow(instr, [80], 1);
   },
   purpleSpiky: function(instr) {
-    this.midiSounds.playChordNow(instr, [55], 1);
+    this.midiSounds.playChordNow(instr, [90], 1);
   },
   redSpiky: function(instr) {
-    this.midiSounds.playChordNow(instr, [70], 1);
+    this.midiSounds.playChordNow(instr, [100], 1);
   },
   simpleGreen: function(instr) {
-    this.midiSounds.playChordNow(instr, [70], 1);
+    this.midiSounds.playChordNow(instr, [110], 1);
   },
   simplePink: function(instr) {
-    this.midiSounds.playChordNow(instr, [70], 1);
+    this.midiSounds.playChordNow(instr, [120], 1);
   },
   yellowDaisy: function(instr) {
-    this.midiSounds.playChordNow(instr, [60], 1);
+    this.midiSounds.playChordNow(instr, [130], 1);
   }
 };
 
@@ -140,7 +140,7 @@ class App extends Component {
   	    <div className="title"><h1>Inflorescence</h1></div>
   	    <div className="help">
   	      <h3> <p>Guide: Pick flowers and drag them to your plot to make music. </p>
-  	      <p> Note: Each plot layer plays different instruments:</p>
+  	      <p> Note: Each flower has a different pitch, and each plot layer plays different instruments when you place the flowers in them:</p>
   	      <p> 1) Acoustic Grand Piano, 2) Steel Acoustic, 3) Celesta, 4) Glockenspiel, 5) Music Box, 6) Marimba, 7) Xylophone </p> </h3>
   	    </div>
   	    <div className="plants">
