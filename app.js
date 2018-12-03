@@ -225,7 +225,7 @@ class App extends Component {
       player = this.state.players[active],
       plotCount = player.plotCount;
 
-    if (plotCount <= 5) {
+    if (plotCount <= 6) {
       var
         players = this.state.players,
         newPlayersArr = players.slice();
