@@ -74,3 +74,13 @@ button:focus {
 .lit-up {
   background-color: #87ceeb;
 }
+
+.special {
+  padding-left: 1000px;
+  padding-top: 1000px;
+}
+
+.container {
+  padding-left: 50px;
+  padding-top: 700px;
+}

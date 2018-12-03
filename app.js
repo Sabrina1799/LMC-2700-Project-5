@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import MIDISounds from 'midi-sounds-react';
 
 import Plot from './plot';
+// import routing from './routing';
+// import Home from "./Home";
+// import OnePlayer from "./OnePlayer";
+// import TwoPlayer from "./TwoPlayer";
+
 
 import fiveSidedYellow from './images/5SidedYellow.png';
 import sixSidedOrange from "./images/6SidedOrange.png";
@@ -133,9 +138,11 @@ class App extends Component {
   render() {
   	return (
   	  <div className="game">
-  	    <div className="title">Music Garden Title</div>
+  	    <div className="title"> Inflorescence</div>
   	    <div className="help">
-  	      Pick flowers and drag them to your plot to make music.
+  	      <h3> <p> SINGLE PLAYER MODE: </p> </h3>
+  	      <h4> <p> Pick flowers and drag them to your plot to make music. </p>
+  	      <p> Add more plots to have more variety in your music (max 6 plots). </p> </h4>
   	    </div>
   	    <div className="plants">
   	      <img className="flower fiveSidedYellow" id="fiveSidedYellow" src={fiveSidedYellow} />
