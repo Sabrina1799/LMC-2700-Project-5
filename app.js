@@ -78,7 +78,8 @@ class App extends Component {
       activePlayer: 0,
       players: [{
         plotCount: 2
-      }]
+      }],
+      continuous: {}
     }
   }
 
@@ -98,6 +99,32 @@ class App extends Component {
     this.playSequence(true);
   }
 
+  playContinuous() {
+    let self = this;
+    let intervalId = setInterval(function() {
+      self.playSequence(true);
+    }, 2000);
+
+    this.setState({
+      continuous: {
+        intervalId: intervalId,
+        playing: true
+      }
+    })
+  }
+
+  stopContinuous() {
+    if (this.state.continuous && this.state.continuous.playing) {
+      let intervalId = this.state.continuous.intervalId;
+
+      clearInterval(intervalId);
+
+      this.setState({
+        continuous: {}
+      });
+    }
+  }
+
   playSequence(all) {
     let
       self = this,
@@ -105,14 +132,10 @@ class App extends Component {
       player = this.state.activePlayer,
       sel;
 
-    console.log('all value: ', all == true ? "true" : 'false');
-
     if (all)
       sel = $('.plotContainer');
     else
       sel = $('#rowNum' + player).find('.plotContainer')
-
-    console.log('sel: ', sel)
 
     sel.each(function(i, el) {
       (function(instr) {
@@ -181,12 +204,16 @@ class App extends Component {
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
         <div className="controls">
-          <button onClick={this.playSequence.bind(this, false)}>Play</button>
           <button onClick={this.addPlot.bind(this)}>Add plot</button>
           <button onClick={this.clearAll.bind(this)}>Clear all</button>
           <button onClick={this.playAllInSequence.bind(this)}>Play all</button>
+          <button onClick={this.playSequence.bind(this)}>Play</button>
+          {(this.state.continuous.playing)
+            && (<button onClick={this.stopContinuous.bind(this)}>Stop continuous</button>)
+            || (<button onClick={this.playContinuous.bind(this)}>Play Continuous</button>)
+          }
 
-          <div class="multiplayer-controls">
+          <div className="multiplayer-controls">
             <button onClick={this.addPlayer.bind(this)}>Add player</button>
             {(this.state.players.length > 1) &&
               (<button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer() + 1}</button>)
