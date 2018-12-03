@@ -30,43 +30,43 @@ let
 
 let mappings = {
   fiveSidedYellow: function(instr) {
-    this.midiSounds.playChordNow(instr, [10], 1);
-  },
-  sixSidedOrange: function(instr) {
-    this.midiSounds.playChordNow(instr, [20], 1);
-  },
-  sixSidedPurple: function(instr) {
-    this.midiSounds.playChordNow(instr, [30], 1);
-  },
-  fancyPink: function(instr) {
-    this.midiSounds.playChordNow(instr, [40], 1);
-  },
-  greenLoop: function(instr) {
     this.midiSounds.playChordNow(instr, [50], 1);
   },
+  sixSidedOrange: function(instr) {
+    this.midiSounds.playChordNow(instr, [53], 1);
+  },
+  sixSidedPurple: function(instr) {
+    this.midiSounds.playChordNow(instr, [56], 1);
+  },
+  fancyPink: function(instr) {
+    this.midiSounds.playChordNow(instr, [59], 1);
+  },
+  greenLoop: function(instr) {
+    this.midiSounds.playChordNow(instr, [62], 1);
+  },
   indianPink: function(instr) {
-    this.midiSounds.playChordNow(instr, [60], 1);
+    this.midiSounds.playChordNow(instr, [65], 1);
   },
   indigoRose: function(instr) {
-    this.midiSounds.playChordNow(instr, [70], 1);
+    this.midiSounds.playChordNow(instr, [68], 1);
   },
   orangeSpiral: function(instr) {
-    this.midiSounds.playChordNow(instr, [80], 1);
+    this.midiSounds.playChordNow(instr, [71], 1);
   },
   purpleSpiky: function(instr) {
-    this.midiSounds.playChordNow(instr, [90], 1);
+    this.midiSounds.playChordNow(instr, [74], 1);
   },
   redSpiky: function(instr) {
-    this.midiSounds.playChordNow(instr, [100], 1);
+    this.midiSounds.playChordNow(instr, [77], 1);
   },
   simpleGreen: function(instr) {
-    this.midiSounds.playChordNow(instr, [110], 1);
+    this.midiSounds.playChordNow(instr, [80], 1);
   },
   simplePink: function(instr) {
-    this.midiSounds.playChordNow(instr, [120], 1);
+    this.midiSounds.playChordNow(instr, [83], 1);
   },
   yellowDaisy: function(instr) {
-    this.midiSounds.playChordNow(instr, [130], 1);
+    this.midiSounds.playChordNow(instr, [86], 1);
   }
 };
 
