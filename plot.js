@@ -9,6 +9,9 @@ class Plot extends Component {
             .clone(true)
             .addClass('planted')
             .attr('style', '')
+            .click(function() {
+              $(ev.target).empty();
+            })
         );
       }
     });
@@ -16,8 +19,7 @@ class Plot extends Component {
 
   render() {
     return (
-      <div className="plotContainer">
-        <h1>Plot</h1>
+      <div id={this.props.id} className="plotContainer">
         <ol>
           <li className="plot"></li>
           <li className="plot"></li>

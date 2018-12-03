@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MIDISounds from 'midi-sounds-react';
-
 import Plot from './plot';
 
 import fiveSidedYellow from './images/5SidedYellow.png';
@@ -27,7 +26,7 @@ let
   marimba = 127,
   xylophone = 140,
 
-  instruments = [acousticGrandPiano, celesta, glockenspiel, musicBox, marimba, xylophone, steelAcoustic];
+  instruments = [acousticGrandPiano, steelAcoustic, celesta, glockenspiel, musicBox, marimba, xylophone];
 
 let mappings = {
   fiveSidedYellow: function(instr) {
@@ -75,7 +74,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      plotCount: 2
+      playerCount: 1,
+      activePlayer: 0,
+      players: [{
+        plotCount: 2
+      }]
     }
   }
 
@@ -86,9 +89,10 @@ class App extends Component {
   playSequence() {
     let
       self = this,
-      instrIndex = 0;
+      instrIndex = 0,
+      player = this.state.activePlayer;
 
-    $('.plotContainer').each(function(i, el) {
+    $('#rowNum' + player).find('.plotContainer').each(function(i, el) {
       (function(instr) {
         let delay = 0;
 
@@ -152,15 +156,28 @@ class App extends Component {
   	      <img className="flower simplePink" id="simplePink" src={simplePink} />
   	      <img className="flower yellowDaisy" id="yellowDaisy" src={yellowDaisy} />
   	    </div>
-  	    <ol id="plots" className="plots">
-          {Array(this.state.plotCount).fill(1).map((el, i) =>
-            <Plot />
-          )}
-  	    </ol>
-  	    <div className="footer">
-  	      <button onClick={this.playSequence.bind(this)}>Play</button>
+        <div className="footer">
+          <button onClick={this.playSequence.bind(this)}>Play</button>
           <button onClick={this.addPlot.bind(this)}>Add plot</button>
-  	    </div>
+          <button onClick={this.addPlayer.bind(this)}>Add player</button>
+          <button onClick={this.switchPlayer.bind(this)}>Switch to Player {this.nextPlayer()}</button>
+        </div>
+  	    <ol id="plots" className="plots">
+          {Array(this.state.playerCount).fill(0).map( (v, i) => {
+            let
+              players = this.state.players,
+              active = this.state.activePlayer;
+
+            return (
+              <div id={"rowNum" + i} className="player-space">
+                <h1>Player {(i + 1)}</h1>
+                {Array(players[active].plotCount).fill(1).map(() =>
+                  <Plot  />
+                )}
+              </div>
+            )
+          })}
+  	    </ol>
 
         <MIDISounds
           ref={ref => (this.midiSounds = ref)}
@@ -172,11 +189,48 @@ class App extends Component {
   }
 
   addPlot() {
-    if (this.state.plotCount <= 7) {
+    let
+      active = this.state.activePlayer,
+      player = this.state.players[active],
+      plotCount = player.plotCount;
+
+    if (plotCount <= 7) {
+      var
+        players = this.state.players,
+        newPlayersArr = players.slice();
+
+      newPlayersArr[active].plotCount = plotCount + 1;
+
       this.setState({
-        plotCount: this.state.plotCount + 1
+        players: newPlayersArr
       });
     }
+  }
+
+  addPlayer() {
+    if (this.state.playerCount < 2) {
+      var newArr = this.state.players.slice();
+
+      newArr.push({
+        plotCount: 2
+      });
+
+      this.setState({
+        playerCount: this.state.playerCount + 1,
+        players: newArr
+      });
+    }
+  }
+
+  nextPlayer() {
+    var current = this.state.activePlayer;
+    return current == 1 ? 2 : 1;
+  }
+
+  switchPlayer() {
+    this.setState({
+      activePlayer: this.nextPlayer()
+    });
   }
 
   componentDidMount() {

@@ -1,19 +1,22 @@
+body {
+  background-color: lightblue;
+}
 .game {
-  max-width: 1000px;
-  max-height: 3500px;
+  /* max-width: 1000px; */
+  max-height: 100%;
   margin: 0 auto;
   text-align: center;
-  background-color: lightblue;
 }
 .title {
   color: white;
   font-size: 30px;
   margin-bottom: 2px;
   text-align: center;
+  padding-top: 20px;
 }
 .help {
   color: white;
-  margin-bottom: 2px;
+  padding-bottom: 5px;
   text-align: center;
 }
 .plants {
@@ -44,10 +47,7 @@
   display: inline-block;
 }*/
 .footer {
-  /* display: flex; */
   width: 100%;
-  /* justify-content: space-between; */
-
 }
 button:focus {
   outline: none;
@@ -73,4 +73,7 @@ button:focus {
 }
 .lit-up {
   background-color: #87ceeb;
+}
+.player-space {
+  /* background-color: red; */
 }
