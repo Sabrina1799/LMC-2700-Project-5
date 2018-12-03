@@ -137,9 +137,11 @@ class App extends Component {
   render() {
   	return (
   	  <div className="game">
-  	    <div className="title">Music Garden Title</div>
+  	    <div className="title"><h1>Inflorescence</h1></div>
   	    <div className="help">
-  	      Pick flowers and drag them to your plot to make music.
+  	      <h3> <p>Guide: Pick flowers and drag them to your plot to make music. </p>
+  	      <p> Note: Each plot layer plays different instruments:</p>
+  	      <p> 1) Acoustic Grand Piano, 2) Steel Acoustic, 3) Celesta, 4) Glockenspiel, 5) Music Box, 6) Marimba, 7) Xylophone </p> </h3>
   	    </div>
   	    <div className="plants">
   	      <img className="flower fiveSidedYellow" id="fiveSidedYellow" src={fiveSidedYellow} />
